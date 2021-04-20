@@ -2,6 +2,7 @@ package practice.web.service;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import practice.web.domain.Member;
 import practice.web.repository.MemberRepository;
@@ -14,8 +15,14 @@ import static org.assertj.core.api.Assertions.setMaxElementsForPrinting;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MemberServiceTest {
-    MemberService memberService = new MemberService();
-    MemoryMemberRepository memberRepository = new MemoryMemberRepository();
+    MemberService memberService;
+    MemoryMemberRepository memberRepository;
+
+    @BeforeEach
+    public void beforeEach() {
+        memberRepository = new MemoryMemberRepository();
+        memberService = new MemberService(memberRepository); //같은 repository로 테스트해야 하므로 
+    }
 
     @AfterEach
     public void afterEach() {
