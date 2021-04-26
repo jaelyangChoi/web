@@ -1,9 +1,11 @@
 package practice.web.repository;
 
+import org.springframework.stereotype.Repository;
 import practice.web.domain.Member;
 
 import java.util.*;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
     //일단 동시성 문제 배제
     private static Map<Long, Member> store = new HashMap<>();
