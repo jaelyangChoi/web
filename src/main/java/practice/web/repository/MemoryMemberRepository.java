@@ -5,7 +5,7 @@ import practice.web.domain.Member;
 
 import java.util.*;
 
-@Repository
+
 public class MemoryMemberRepository implements MemberRepository {
     //일단 동시성 문제 배제
     private static Map<Long, Member> store = new HashMap<>();
@@ -36,7 +36,7 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     // test 끝나고 store 지울 수 있도록
-    public void clearStore(){
+    public void clearStore() {
         store.clear();
     }
 }
