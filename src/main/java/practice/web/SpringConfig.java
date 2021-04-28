@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import practice.web.repository.JdbcMemberRepository;
+import practice.web.repository.JdbcTemplateMemberRepository;
 import practice.web.repository.MemberRepository;
 import practice.web.repository.MemoryMemberRepository;
 import practice.web.service.MemberService;
@@ -25,12 +26,12 @@ public class SpringConfig {
     @Bean
     public MemberService memberService() {
         return new MemberService(memberRepository());//container에 등록되어 있는 빈을 주입
-
     }
 
     @Bean //singleton으로 동작
     public MemberRepository memberRepository() {
         //return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+        //return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);//개발자가 직접 생성할 경우 autowired 안 먹힌다.
     }
 }
