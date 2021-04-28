@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class JdbcMemberRepository implements MemberRepository {
     private final DataSource dataSource;
-
+    //dataSource도 빈으로 생성해주기 때문에 @Autowired로 DI 받아도 된다.
     public JdbcMemberRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
