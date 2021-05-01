@@ -11,6 +11,19 @@ import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
+    //spring data jpa가 생성한 빈을 주입받는다.
+    private final MemberRepository memberRepository;
+
+    @Autowired
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    @Bean
+    public MemberService memberService() {
+        return new MemberService(memberRepository);//container에 등록되어 있는 빈을 주입
+    }
+    /* JPA ver
     private EntityManager em;
 
     @Autowired
@@ -30,4 +43,5 @@ public class SpringConfig {
         //return new JdbcTemplateMemberRepository(dataSource);//개발자가 직접 생성할 경우 autowired 안 먹힌다.
         return new JpaMemberRepository(em);
     }
+    */
 }
