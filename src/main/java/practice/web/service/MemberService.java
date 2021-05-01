@@ -1,12 +1,14 @@
 package practice.web.service;
 
 
+import org.springframework.transaction.annotation.Transactional;
 import practice.web.domain.Member;
 import practice.web.repository.MemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional //JPA를 쓰려면 Transaction이 있어야 함 (데이터 저장, 변경할 때 필요)
 public class MemberService {
     private final MemberRepository memberRepository;
 

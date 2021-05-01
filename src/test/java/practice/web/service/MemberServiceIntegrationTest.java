@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import practice.web.domain.Member;
 import practice.web.repository.MemberRepository;
@@ -14,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@Transactional
+@Transactional //test에 있으면 자동으로 rollback됨
 class MemberServiceIntegrationTest {
     @Autowired //test는 단발성이니까 편하게 필드 주입해도 된다
     MemberService memberService;
@@ -22,6 +23,7 @@ class MemberServiceIntegrationTest {
     MemberRepository memberRepository;
 
     @Test
+    //@Commit //DB에 반영됨
     void 회원가입() {
         //given
         Member member = new Member();
