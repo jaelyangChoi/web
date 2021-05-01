@@ -3,6 +3,7 @@ package practice.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import practice.web.aop.TimeTraceAop;
 import practice.web.repository.*;
 import practice.web.service.MemberService;
 
@@ -23,6 +24,13 @@ public class SpringConfig {
     public MemberService memberService() {
         return new MemberService(memberRepository);//container에 등록되어 있는 빈을 주입
     }
+
+    //AOP 걸어서 쓰는 걸 인지시키도록 직접 빈 등록. 정형적이지도 않고
+    @Bean
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
+    }
+
     /* JPA ver
     private EntityManager em;
 
